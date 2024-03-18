@@ -4772,7 +4772,7 @@ function remove_course_contents($courseid, $showfeedback = true, array $options 
             $sql = "SELECT cm.*, m.id AS modinstance, m.name, '$modname' AS modname
               FROM {".$modname."} m
                    LEFT JOIN {course_modules} cm ON cm.instance = m.id AND cm.module = :moduleid
-             WHERE m.course = :courseid";
+             WHERE m.course = :courseid AND cm.deletioninprogress != 1";
             $instances = $DB->get_records_sql($sql, array('courseid' => $course->id,
                 'modulename' => $modname, 'moduleid' => $allmodules[$modname]));
 
